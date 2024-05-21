@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dockerfile: 
-          - '8.0/Dockerfile'
+        version: 
+          - '8.0'
 
     steps:
       - name: Checkout
@@ -48,8 +48,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v5
         with:
-          context: ${{ matrix.dockerfile }}
-          file: ${{ matrix.dockerfile }}
+          context: ${{ matrix.version }}
+          file: ${{ matrix.version }}/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           cache-from: type=registry,ref=itsreddi/mysql:latest
           cache-to: type=inline
